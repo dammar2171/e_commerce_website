@@ -10,6 +10,18 @@ $sql_products = "SELECT * FROM products";
 
 $result_users = $conn->query($sql_users);
 $result_products = $conn->query($sql_products);
+
+
+$sql = "SELECT COUNT(*) AS total_orders FROM orders";
+$result = $conn->query($sql);
+
+if ($result && $result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $totalOrders = $row['total_orders'];
+} else {
+    $totalOrders = 0; // Default value if no orders
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,9 +138,10 @@ $result_products = $conn->query($sql_products);
                 <p><?php echo $result_products->num_rows; ?></p>
             </div>
             <div class="stat-box">
-                <h3>Total Orders</h3>
-                <p>0</p> <!-- Replace with dynamic order count if available -->
-            </div>
+    <h3>Total Orders</h3>
+    <p><?php echo $totalOrders; ?></p>
+</div>
+
         </div>
 
         <!-- Users Table -->

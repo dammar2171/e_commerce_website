@@ -3,8 +3,10 @@
 include 'db_connect.php';
 include 'functions.php';
 
-// Start the session to manage cart data
-session_start();
+// this code adjust session according to it 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Check if the order ID is passed in the URL
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
@@ -83,7 +85,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
         <h3>Total Amount: $<?php echo $totalAmount; ?></h3>
 
-        <p>If you have any questions, feel free to contact us at support@example.com.</p>
+        <p>If you have any questions, feel free to contact us at dammarbhatt111@gmail.com.</p>
         <a href="index.php" class="btn">Back to Shopping</a>
     </div>
 </main>
